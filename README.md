@@ -1,73 +1,94 @@
-# Sentiment Slider
+# Sentiment Slider (v2.0)
 
-An advanced sentiment slider component designed for intuitive and engaging user emotion capture, with a focus on mobile-first, accessible interaction design.
+A highly refined, iOS-inspired sentiment slider component focused on micro-interactions and user experience.
 
-## Live Demo
+![Sentiment Slider Demo](https://billsobey.github.io/sentiment-slider/assets/IMG_2920.png)
 
-Check out the [live interactive demo](https://billsobey.github.io/sentiment-slider/) and [component documentation](https://billsobey.github.io/sentiment-slider/documentation.html) to experience the sentiment slider in action.
+## What's New in v2.0
 
-## Features
+- **Text-Based Feedback**: Cleaner interface with sentiment text labels instead of emojis
+- **Enhanced Design**: More refined iOS-inspired look and feel
+- **Improved Animations**: Smoother transitions and more visual feedback
+- **Better Touch Handling**: Enhanced mobile experience with improved gesture handling
+- **Accessibility Improvements**: Better contrast and text readability
 
-- 🌈 Dynamic color transitions based on sentiment value
-- 💫 Elegant animations and micro-interactions
-- 📱 Mobile-optimized touch interactions
-- ♿ Accessible design with keyboard support
-- 🔄 Real-time visual feedback
-- 🎯 Confirmation flow with visual cues
+## Demo
+
+Try the interactive demo: [Sentiment Slider Demo](https://billsobey.github.io/sentiment-slider/)
 
 ## Installation
 
 ```bash
-npm install @sentiment-slider/react
+npm install sentiment-slider
+# or
+yarn add sentiment-slider
 ```
 
-## Basic Usage
+## Usage
 
 ```jsx
-import { SentimentSlider } from '@sentiment-slider/react';
+import React from 'react';
+import { SentimentSlider } from 'sentiment-slider';
+import 'sentiment-slider/dist/SentimentSlider.css'; // Don't forget to import the styles!
 
 function FeedbackForm() {
   const handleConfirm = (value) => {
-    console.log(`User sentiment value: ${value}`);
-    // Process the sentiment value
+    console.log('Selected sentiment value:', value);
+    // Process the sentiment value (0-100)
   };
 
   return (
-    <SentimentSlider
-      onConfirm={handleConfirm}
-      initialValue={50}
-      questionText="How was your experience today?"
-    />
+    <div>
+      <h1>We'd love your feedback</h1>
+      
+      <SentimentSlider
+        questionText="How was your experience today?"
+        nextButtonText="Submit"
+        onConfirm={handleConfirm}
+        initialValue={50}
+      />
+    </div>
   );
 }
+
+export default FeedbackForm;
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| initialValue | number | 50 | Initial value for the slider (0-100) |
-| onConfirm | function | required | Callback function triggered when user confirms their selection |
-| questionText | string | "How do you feel?" | Custom question text |
-| nextButtonText | string | "Next question" | Custom next button text |
-| className | string | undefined | Additional CSS class for styling |
+| `initialValue` | number | 50 | Initial value of the slider (0-100) |
+| `onConfirm` | function | required | Callback function that receives the final slider value |
+| `questionText` | string | "How do you feel?" | The question displayed above the slider |
+| `nextButtonText` | string | "Next question" | Text for the confirmation button |
+| `className` | string | "" | Additional CSS class for custom styling |
 
-## Use Cases
+## Features
 
-- Customer satisfaction surveys
-- User experience feedback
-- Product reviews
-- Employee satisfaction measurement
-- Healthcare patient feedback
-- Educational feedback systems
+- **Dynamic Background Colors**: Background shifts smoothly through a color gradient from red (negative) to green (positive) as the slider moves
+- **Immediate Visual Feedback**: Real-time text feedback responds to user interaction
+- **Dramatic Ripple Effects**: White ripple animations when the slider is released
+- **iOS-Inspired Design**: Clean, minimal aesthetic with attention to micro-interactions
+- **Multi-Question Flow**: "Next question" button appears after interaction for survey-style applications
+- **Touch-Optimized**: Mobile-first design with careful handling of touch events
+- **Responsive Layout**: Adapts to different screen sizes and orientations
 
-## Browser Support
+## Examples
 
-- Chrome/Edge (latest)
-- Firefox (latest)
+Check out the `examples` directory for sample implementations, including a multi-question survey.
+
+## Browser Compatibility
+
+Tested and working in:
+
+- Chrome (latest)
 - Safari (latest)
-- Mobile browsers (iOS Safari, Android Chrome)
+- Firefox (latest)
+- Edge (latest)
+- Mobile Safari (iOS 14+)
+- Chrome for Android (latest)
 
 ## License
 
-MIT © [Sentiment Slider Contributors]
+MIT © [Bill Sobey](https://github.com/Billsobey)
