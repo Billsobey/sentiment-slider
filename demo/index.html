@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sentiment Slider Demo</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Sentiment Slider Demo</h1>
+    <p>An interactive, touch-friendly sentiment capture component</p>
+  </header>
+
+  <main>
+    <div id="demo-container">
+      <div id="slider-container"></div>
+    </div>
+
+    <div class="demo-controls">
+      <h2>Demo Controls</h2>
+      <button id="reset-demo">Reset Demo</button>
+    </div>
+
+    <div class="features">
+      <h2>Key Features</h2>
+      <ul>
+        <li>Dynamic background colors reflect sentiment intensity</li>
+        <li>Ripple animation on slider release</li>
+        <li>Real-time feedback text updates</li>
+        <li>Mobile-optimized touch interactions</li>
+        <li>"Next question" button appears after interaction</li>
+      </ul>
+    </div>
+  </main>
+
+  <section class="code-example">
+    <h2>Implementation Example</h2>
+    <pre><code>
+import { SentimentSlider } from '@sentiment-slider/react';
+
+function FeedbackForm() {
+  const handleConfirm = (value) => {
+    console.log(`User sentiment value: ${value}`);
+    // Handle confirmation...
+  };
+
+  return (
+    &lt;SentimentSlider 
+      onConfirm={handleConfirm}
+      initialValue={50}
+    /&gt;
+  );
+}
+    </code></pre>
+  </section>
+
+  <footer>
+    <p>View on <a href="https://github.com/Billsobey/sentiment-slider">GitHub</a></p>
+    <p>MIT License © 2025 Sentiment Slider Contributors</p>
+  </footer>
+
+  <!-- Demo implementation -->
+  <script type="text/babel" src="demo.js"></script>
+</body>
+</html>

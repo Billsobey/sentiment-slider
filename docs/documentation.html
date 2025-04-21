@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sentiment Slider Component Documentation</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      padding: 40px;
+    }
+    
+    .documentation {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    
+    .documentation img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin: 20px 0;
+      border: 1px solid #eee;
+    }
+    
+    .documentation h1 {
+      color: #4a90e2;
+      margin-bottom: 20px;
+    }
+    
+    .documentation h2 {
+      margin-top: 40px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .documentation code {
+      background-color: #f8f9fa;
+      padding: 2px 5px;
+      border-radius: 3px;
+      font-family: monospace;
+    }
+    
+    .documentation pre {
+      background-color: #f8f9fa;
+      padding: 15px;
+      border-radius: 5px;
+      overflow-x: auto;
+      border: 1px solid #eee;
+    }
+    
+    .documentation table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    
+    .documentation th, .documentation td {
+      padding: 10px;
+      text-align: left;
+      border: 1px solid #eee;
+    }
+    
+    .documentation th {
+      background-color: #f8f9fa;
+      font-weight: 600;
+    }
+    
+    .documentation a {
+      color: #4a90e2;
+      text-decoration: none;
+    }
+    
+    .documentation a:hover {
+      text-decoration: underline;
+    }
+    
+    .demo-link {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #4a90e2;
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    .demo-link:hover {
+      background-color: #3a80d2;
+      text-decoration: none;
+    }
+    
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+      margin-bottom: 30px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    nav a {
+      color: #4a90e2;
+      text-decoration: none;
+      margin-left: 20px;
+    }
+    
+    .nav-brand {
+      font-size: 1.2em;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="documentation">
+    <nav>
+      <div class="nav-brand">Sentiment Slider</div>
+      <div>
+        <a href="index.html">Demo</a>
+        <a href="documentation.html">Documentation</a>
+        <a href="https://github.com/Billsobey/sentiment-slider">GitHub</a>
+      </div>
+    </nav>
+    
+    <h1>Sentiment Slider Component</h1>
+    
+    <p>A highly refined, iOS-inspired sentiment slider component focused on micro-interactions and user experience.</p>
+    
+    <img src="assets/IMG_2920.png" alt="Sentiment Slider">
+    
+    <h2 id="overview">Overview</h2>
+    
+    <p>This component allows users to express their sentiment on a continuous scale from negative to positive, with a neutral position in the middle. It implements advanced visual feedback, haptic cues, and dynamic animations to create a highly engaging and intuitive user experience.</p>
+    
+    <h2 id="key-features">Key Features</h2>
+    
+    <ul>
+      <li><strong>Dynamic Background Colors</strong>: Background shifts smoothly through a continuous color gradient from red (negative) to green (positive) as the slider moves</li>
+      <li><strong>Immediate Visual Feedback</strong>: Real-time visual cues respond to user interaction</li>
+      <li><strong>Dramatic Ripple Effects</strong>: White ripple animations fill the screen when the slider is released</li>
+      <li><strong>iOS-Inspired Design</strong>: Clean, minimal aesthetic with attention to micro-interactions</li>
+      <li><strong>Multi-Question Flow</strong>: "Next question" button appears after interaction for survey-style applications</li>
+      <li><strong>Accessible Design</strong>: High contrast colors with black text for optimal readability</li>
+      <li><strong>Touch-Optimized</strong>: Mobile-first design with careful handling of touch events</li>
+      <li><strong>Responsive Layout</strong>: Adapts to different screen sizes and orientations</li>
+      <li><strong>Cross-Browser Compatible</strong>: Works across modern browsers</li>
+      <li><strong>Drag Prevention</strong>: Prevents accidental page scrolling during slider interaction</li>
+    </ul>
+    
+    <h2 id="technical-highlights">Technical Highlights</h2>
+    
+    <ul>
+      <li><strong>Continuous Color Transitions</strong>: Mathematical color calculations create smooth transitions based on slider position</li>
+      <li><strong>Fluid Animations</strong>: Uses Framer Motion for animating buttons, text, and ripple effects</li>
+      <li><strong>Optimized Event Handling</strong>: Proper touch and mouse event handling for smooth interactions</li>
+      <li><strong>Performant Rendering</strong>: Efficient React component with controlled re-renders</li>
+      <li><strong>Layered Visual Effects</strong>: Multiple ripple layers create depth and dimension</li>
+      <li><strong>Accessibility Considerations</strong>: Proper contrast ratios and semantic markup</li>
+      <li><strong>Gesture Prevention</strong>: Prevents default browser behaviors that would interfere with interactions</li>
+    </ul>
+    
+    <h2 id="implementation">Implementation</h2>
+    
+    <p>The component is implemented in React TypeScript with Tailwind CSS for styling and Framer Motion for animations. The main files include:</p>
+    
+    <ul>
+      <li><code>client/src/components/SentimentSlider.tsx</code>: The main component implementation</li>
+      <li><code>client/src/hooks/use-sentiment.ts</code>: Custom hook for sentiment state management</li>
+      <li><code>client/src/lib/utils.ts</code>: Utility functions including color manipulation</li>
+    </ul>
+    
+    <h2 id="usage">Usage</h2>
+    
+    <pre><code>import { SentimentSlider } from '@/components/SentimentSlider';
+
+function MyFeedbackForm() {
+  const handleConfirm = () => {
+    // Handle the confirmation (e.g., move to next question)
+    console.log('Moving to next question...');
+  };
+
+  return (
+    &lt;SentimentSlider
+      onConfirm={handleConfirm}
+    /&gt;
+  );
+}</code></pre>
+    
+    <h2 id="component-api">Component API</h2>
+    
+    <table>
+      <thead>
+        <tr>
+          <th>Prop</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>onConfirm</code></td>
+          <td><code>() => void</code></td>
+          <td>Callback function triggered when the user clicks the "Next question" button</td>
+        </tr>
+        <tr>
+          <td><code>initialValue</code></td>
+          <td><code>number</code></td>
+          <td>(Optional) Initial value of the slider (0-100, default: 50)</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <h2 id="design-decisions">Design Decisions</h2>
+    
+    <ol>
+      <li><strong>Color Psychology</strong>: Red represents negative sentiment, yellow/neutral for middle values, green for positive sentiment</li>
+      <li><strong>Contrast Optimization</strong>: Black text on all backgrounds ensures readability</li>
+      <li><strong>White Ripple Effect</strong>: Provides clear visual feedback that works on any background color</li>
+      <li><strong>Centered Button</strong>: The "Next question" button appears centered after interaction to avoid layout shifts</li>
+      <li><strong>Simple Interface</strong>: Minimal UI encourages focus on the sentiment expression</li>
+      <li><strong>No Numerical Values</strong>: Focuses on feeling rather than specific numerical ratings</li>
+    </ol>
+    
+    <h2 id="best-practices-for-integration">Best Practices for Integration</h2>
+    
+    <ul>
+      <li>Place this component in a dedicated view/page to give it adequate screen space</li>
+      <li>Avoid cluttering the page with other elements that might distract from the interaction</li>
+      <li>Consider the emotional context when using the component (e.g., customer satisfaction, user feedback)</li>
+      <li>For multi-question flows, maintain consistent styling across all questions</li>
+    </ul>
+    
+    <h2 id="accessibility-considerations">Accessibility Considerations</h2>
+    
+    <ul>
+      <li>The slider can be operated using keyboard controls</li>
+      <li>Visual feedback is paired with optional haptic feedback on supporting devices</li>
+      <li>Text labels maintain sufficient contrast against changing backgrounds</li>
+      <li>Instructions are provided for all interactive elements</li>
+    </ul>
+    
+    <h2 id="browser-compatibility">Browser Compatibility</h2>
+    
+    <p>Tested and working in:</p>
+    
+    <ul>
+      <li>Chrome (latest)</li>
+      <li>Safari (latest)</li>
+      <li>Firefox (latest)</li>
+      <li>Edge (latest)</li>
+      <li>Mobile Safari (iOS 14+)</li>
+      <li>Chrome for Android (latest)</li>
+    </ul>
+    
+    <h2 id="future-enhancements">Future Enhancements</h2>
+    
+    <ul>
+      <li>Add support for screen readers with appropriate ARIA attributes</li>
+      <li>Implement keyboard navigation for greater accessibility</li>
+      <li>Add custom animation timing options</li>
+      <li>Create theming options for different product contexts</li>
+      <li>Add haptic feedback API integration for physical feedback on mobile devices</li>
+    </ul>
+    
+    <h2 id="license">License</h2>
+    
+    <p>This component is available under the MIT License. See the <a href="https://github.com/Billsobey/sentiment-slider/blob/main/LICENSE">LICENSE</a> file for details.</p>
+    
+    <a href="index.html" class="demo-link">Try the Interactive Demo</a>
+  </div>
+</body>
+</html>
