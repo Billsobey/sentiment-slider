@@ -5,71 +5,87 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sentiment Slider Demo</title>
   <link rel="stylesheet" href="styles.css">
-  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-  <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <meta name="description" content="An interactive, touch-friendly sentiment capture component">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
     <h1>Sentiment Slider Demo</h1>
-    <p>An interactive, touch-friendly sentiment capture component</p>
-    <nav style="margin-top: 20px; display: flex; justify-content: center; gap: 20px;">
-      <a href="index.html" style="font-weight: bold; color: #4a90e2; text-decoration: none;">Demo</a>
-      <a href="documentation.html" style="color: #4a90e2; text-decoration: none;">Documentation</a>
-      <a href="https://github.com/Billsobey/sentiment-slider" style="color: #4a90e2; text-decoration: none;">GitHub</a>
+    <p class="subtitle">An interactive, touch-friendly sentiment capture component</p>
+    <nav>
+      <a href="index.html" class="active">Demo</a>
+      <a href="documentation.html">Documentation</a>
+      <a href="https://github.com/Billsobey/sentiment-slider" target="_blank">GitHub</a>
     </nav>
   </header>
-
+  
   <main>
-    <div id="demo-container">
-      <div id="slider-container"></div>
+    <!-- Demo Container -->
+    <div id="sentiment-demo" class="demo-container">
+      <div class="demo-slider-container">
+        <h2 id="slider-title">How do you feel?</h2>
+        <div id="sentiment-value" class="sentiment-value">Neutral</div>
+        
+        <div class="slider-container">
+          <div class="slider-wrapper">
+            <div class="slider-track">
+              <div id="slider-fill" class="slider-fill"></div>
+              <div id="slider-handle" class="slider-handle"></div>
+            </div>
+          </div>
+          
+          <div class="slider-labels">
+            <span>Negative</span>
+            <span>Positive</span>
+          </div>
+          
+          <div class="instruction-text">Slide to indicate your sentiment</div>
+        </div>
+        
+        <button id="next-button" class="next-button">Next question</button>
+      </div>
     </div>
-
+    
+    <!-- Demo Controls -->
     <div class="demo-controls">
-      <h2>Demo Controls</h2>
-      <button id="reset-demo">Reset Demo</button>
+      <h3>Demo Controls</h3>
+      <button id="reset-demo" class="reset-button">Reset Demo</button>
     </div>
-
-    <div class="features">
-      <h2>Key Features</h2>
-      <ul>
-        <li>Dynamic background colors reflect sentiment intensity</li>
-        <li>Ripple animation on slider release</li>
-        <li>Real-time feedback text updates</li>
-        <li>Mobile-optimized touch interactions</li>
-        <li>"Next question" button appears after interaction</li>
+    
+    <!-- Key Features -->
+    <div class="features-container">
+      <h3>Key Features</h3>
+      <ul class="feature-list">
+        <li>
+          <span class="feature-icon">🎨</span>
+          <span class="feature-text">Dynamic background colors reflect sentiment intensity</span>
+        </li>
+        <li>
+          <span class="feature-icon">💫</span>
+          <span class="feature-text">Ripple animation on slider release</span>
+        </li>
+        <li>
+          <span class="feature-icon">📱</span>
+          <span class="feature-text">Mobile-optimized touch interactions</span>
+        </li>
+        <li>
+          <span class="feature-icon">📝</span>
+          <span class="feature-text">Real-time feedback text updates</span>
+        </li>
+        <li>
+          <span class="feature-icon">⏭️</span>
+          <span class="feature-text">"Next question" button appears after interaction</span>
+        </li>
       </ul>
     </div>
   </main>
-
-  <section class="code-example">
-    <h2>Implementation Example</h2>
-    <pre><code>
-import { SentimentSlider } from '@sentiment-slider/react';
-
-function FeedbackForm() {
-  const handleConfirm = (value) => {
-    console.log(`User sentiment value: ${value}`);
-    // Handle confirmation...
-  };
-
-  return (
-    &lt;SentimentSlider 
-      onConfirm={handleConfirm}
-      initialValue={50}
-    /&gt;
-  );
-}
-    </code></pre>
-  </section>
-
+  
   <footer>
-    <p>View on <a href="https://github.com/Billsobey/sentiment-slider">GitHub</a></p>
-    <p>MIT License © 2025 Sentiment Slider Contributors</p>
+    <p>Created by <a href="https://github.com/Billsobey" target="_blank">Bill Sobey</a> | <a href="https://github.com/Billsobey/sentiment-slider" target="_blank">View on GitHub</a></p>
   </footer>
-
-  <!-- Demo implementation -->
-  <script type="text/babel" src="demo.js"></script>
+  
+  <script src="demo.js"></script>
 </body>
 </html>

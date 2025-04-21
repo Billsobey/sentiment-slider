@@ -1,64 +1,62 @@
-# Setting Up GitHub Pages for Sentiment Slider
+# GitHub Pages Setup for Sentiment Slider v2
 
-This document explains how to properly set up GitHub Pages to display the interactive demo instead of the README file.
+This document explains how to properly set up GitHub Pages for the Sentiment Slider demo and documentation.
 
-## Option 1: Configure in Repository Settings
+## Steps for Setting Up GitHub Pages
 
-1. Go to your GitHub repository at `https://github.com/Billsobey/sentiment-slider`
-2. Click on **Settings** (tab near the top right)
-3. Scroll down to the **GitHub Pages** section
-4. Under **Source**, select "Deploy from a branch"
-5. Under **Branch**, select "main" and "/docs" folder, then click **Save**
-6. Wait a few minutes for GitHub Pages to build and deploy your site
-7. Your site will be available at `https://billsobey.github.io/sentiment-slider/`
+1. **Push your code to the `main` branch**
+   
+   Make sure all your code is committed and pushed to the `main` branch of your repository.
 
-## Option 2: Create a gh-pages Branch
+2. **Configure GitHub Pages in Repository Settings**
 
-Alternatively, you can create a dedicated `gh-pages` branch:
+   - Go to your repository on GitHub
+   - Click on "Settings"
+   - Scroll down to the "Pages" section
+   - Under "Build and deployment", select:
+     - Source: "Deploy from a branch"
+     - Branch: "gh-pages" / "/(root)"
+   - Click "Save"
 
-```bash
-# Clone the repository if you haven't already
-git clone https://github.com/Billsobey/sentiment-slider.git
-cd sentiment-slider
+3. **Wait for the Deployment**
 
-# Create and checkout a new orphan branch (no history)
-git checkout --orphan gh-pages
+   - GitHub Actions will automatically deploy your pages to GitHub Pages
+   - You can check the status in the "Actions" tab of your repository
+   - Once complete, your site will be available at `https://[your-username].github.io/sentiment-slider/`
 
-# Remove all files from the working directory
-git rm -rf .
+## Important Files for GitHub Pages
 
-# Copy the contents of the docs folder to the root of this branch
-# (You can do this manually or with a script)
+- **`/docs` directory**: Contains all the files for the GitHub Pages site
+  - `index.html`: The main demo page
+  - `documentation.html`: Component documentation
+  - `styles.css`: Styles for the GitHub Pages site
+  - `demo.js`: JavaScript for the interactive demo
+  - `.nojekyll`: Prevents GitHub from processing the site with Jekyll
 
-# Add all files
-git add .
+- **`.github/workflows/pages.yml`**: GitHub Actions workflow that automatically deploys the `/docs` directory to GitHub Pages when you push to main
 
-# Commit changes
-git commit -m "Set up GitHub Pages"
+## Testing Locally
 
-# Push to GitHub
-git push origin gh-pages
-```
+To test the GitHub Pages site locally before deploying:
 
-## Option 3: Change GitHub Pages Settings in Repository Configuration
-
-You can also add a `.github/workflows/pages.yml` file (which we've already added) and configure GitHub Pages to use this GitHub Actions workflow:
-
-1. Go to your GitHub repository settings
-2. Navigate to **Pages** in the left sidebar
-3. Under **Source**, select "GitHub Actions"
-4. This will use our existing workflow file to build and deploy the site
+1. Navigate to the `/docs` directory
+2. Start a local server:
+   ```
+   npx serve
+   ```
+   or
+   ```
+   python -m http.server
+   ```
+3. Open your browser to the local server address (typically `http://localhost:5000` or `http://localhost:8000`)
 
 ## Troubleshooting
 
-If you're still seeing the README instead of the interactive demo:
-
-1. Check that the files are properly organized in the `/docs` folder
-2. Ensure there's an `index.html` file in the root of your GitHub Pages source
-3. Check the GitHub Pages build logs for any errors
-4. It might take a few minutes for changes to take effect after updating settings
+- If your site isn't deploying, check the "Actions" tab to see if there are any workflow errors
+- Make sure you have the `.nojekyll` file in your `/docs` directory
+- If styles aren't loading, check the paths in your HTML files
 
 ## Additional Resources
 
 - [GitHub Pages Documentation](https://docs.github.com/en/pages)
-- [Configuring a publishing source for your GitHub Pages site](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
+- [GitHub Actions Documentation](https://docs.github.com/en/actions)
