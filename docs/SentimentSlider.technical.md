@@ -6,9 +6,7 @@ This document provides technical details about the implementation of the Sentime
 
 The SentimentSlider is built using a combination of:
 
-1. **React Component** (`SentimentSlider.tsx`): The main component that renders the UI and handles interactions
-2. **Custom Hook** (`use-sentiment.ts`): Manages state and logic related to sentiment values
-3. **Utility Functions** (`utils.ts`): Provides helper functions for calculations, especially color interpolation
+1. **React Component** (`src/SentimentSlider.tsx`): The main component that renders the UI and handles interactions
 
 ## Key Dependencies
 
@@ -40,7 +38,6 @@ The component follows this general structure:
 The component manages several pieces of state:
 
 ```typescript
-// From use-sentiment.ts custom hook
 const [value, setValue] = useState<number>(50);
 const [isSliding, setIsSliding] = useState<boolean>(false);
 const [isPulsing, setIsPulsing] = useState<boolean>(false);
