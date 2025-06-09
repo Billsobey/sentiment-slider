@@ -55,6 +55,11 @@ export function SentimentSlider({
   const sliderRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // Update slider value if initialValue prop changes
+  useEffect(() => {
+    setSliderValue(initialValue);
+  }, [initialValue]);
+
   // Get feedback text based on slider value
   const getSentimentText = (value: number): string => {
     if (value < 20) return "Negative";
