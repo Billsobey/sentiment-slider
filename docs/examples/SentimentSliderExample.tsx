@@ -47,15 +47,16 @@ export default function FeedbackSurvey() {
       timestamp: Date.now(),
     };
     
-    setResponses([...responses, response]);
-    
+    const updatedResponses = [...responses, response];
+    setResponses(updatedResponses);
+
     // Move to next question or complete survey
     if (currentQuestionIndex < QUESTIONS.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
       setIsComplete(true);
       // Optional: Submit data to server
-      submitFeedback(responses);
+      submitFeedback(updatedResponses);
     }
   };
   
