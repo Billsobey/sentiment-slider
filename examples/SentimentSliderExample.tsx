@@ -77,11 +77,13 @@ export default function FeedbackSurvey() {
           </div>
           
           <SentimentSlider
+            key={questions[currentQuestionIndex].id}
             questionText={questions[currentQuestionIndex].question}
             onConfirm={handleSentimentConfirm}
+            initialValue={50}
             nextButtonText={
-              currentQuestionIndex < questions.length - 1 
-                ? "Next question" 
+              currentQuestionIndex < questions.length - 1
+                ? "Next question"
                 : "Complete survey"
             }
           />
