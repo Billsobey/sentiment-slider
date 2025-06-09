@@ -1,6 +1,7 @@
 # Sentiment Slider (v2.0)
 
-A highly refined, iOS-inspired sentiment slider component focused on micro-interactions and user experience.
+A highly refined, iOS-inspired sentiment slider component focused on
+micro-interactions and user experience.
 
 ![Sentiment Slider Demo](https://billsobey.github.io/sentiment-slider/assets/IMG_2920.png)
 
