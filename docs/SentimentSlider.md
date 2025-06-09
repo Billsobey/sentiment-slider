@@ -90,6 +90,14 @@ function CustomerFeedbackForm() {
   );
 }
 ```
+### Spectacular Variant
+For a more vibrant look, use `SentimentSliderSpectacular`:
+```tsx
+import { SentimentSliderSpectacular } from "../src/SentimentSliderSpectacular";
+
+<SentimentSliderSpectacular onConfirm={handleNextQuestion} />
+```
+
 
 ## Customization API
 
