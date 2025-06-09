@@ -53,7 +53,17 @@ function FeedbackForm() {
 }
 
 export default FeedbackForm;
+## Spectacular Variant
+
+For more dramatic visuals you can import the **SentimentSliderSpectacular** component:
+
+```jsx
+import { SentimentSliderSpectacular } from "sentiment-slider";
+import "sentiment-slider/dist/SentimentSliderSpectacular.css";
+
+<SentimentSliderSpectacular onConfirm={handleConfirm} />
 ```
+
 
 ## Props
 
