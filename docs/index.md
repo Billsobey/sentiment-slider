@@ -14,7 +14,7 @@ To integrate the Sentiment Slider into your project:
 
 1. Import the component:
 ```tsx
-import { SentimentSlider } from '@/components/SentimentSlider';
+import { SentimentSlider } from '../src/SentimentSlider';
 ```
 
 2. Add it to your component:
@@ -44,9 +44,7 @@ function MyComponent() {
 
 The Sentiment Slider is composed of these files:
 
-- `components/SentimentSlider.tsx`: The main component implementation
-- `hooks/use-sentiment.ts`: Custom hook for managing sentiment state
-- `lib/utils.ts`: Utility functions for color calculations and animations
+- `src/SentimentSlider.tsx`: The main component implementation
 
 ## Integration Guide
 

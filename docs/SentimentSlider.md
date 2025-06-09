@@ -57,7 +57,7 @@ Colors transition smoothly with a 0.25s ease-in-out transition for a polished fe
 
 ```tsx
 // Import the component
-import { SentimentSlider } from '@/components/SentimentSlider';
+import { SentimentSlider } from '../src/SentimentSlider';
 import { useState } from 'react';
 
 function CustomerFeedbackForm() {
@@ -134,12 +134,8 @@ The component has been tested in:
 ## Code Structure
 
 ```
-components/
+src/
   └── SentimentSlider.tsx  # Main component implementation
-hooks/
-  └── use-sentiment.ts     # Custom hook for state management
-lib/
-  └── utils.ts             # Utility functions including color calculations
 ```
 
 ## Event Handling Details

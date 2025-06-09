@@ -6,7 +6,7 @@
  */
 
 import React, { useState } from 'react';
-import { SentimentSlider } from '@/components/SentimentSlider';
+import { SentimentSlider } from '../../src/SentimentSlider';
 
 interface FeedbackQuestion {
   id: string;
