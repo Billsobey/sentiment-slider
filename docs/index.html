@@ -2,90 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sentiment Slider Demo</title>
-  <link rel="stylesheet" href="styles.css">
-  <meta name="description" content="An interactive, touch-friendly sentiment capture component">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="Interactive iOS-inspired sentiment slider for modern web applications">
+  <title>Sentiment Slider v2.0 - Interactive Demo</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script type="module" crossorigin src="/assets/index-seR-Z_YU.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-g2kUE7Qg.css">
 </head>
 <body>
-  <header>
-    <h1>Sentiment Slider Demo</h1>
-    <p class="subtitle">An interactive, touch-friendly sentiment capture component</p>
-    <nav>
-      <a href="index.html" class="active">Demo</a>
-      <a href="documentation.html">Documentation</a>
-      <a href="https://github.com/Billsobey/sentiment-slider" target="_blank">GitHub</a>
-    </nav>
-  </header>
-  
-  <main>
-    <!-- Demo Container -->
-    <div id="sentiment-demo" class="demo-container">
-      <div class="demo-slider-container">
-        <h2 id="slider-title">How do you feel?</h2>
-        <div id="sentiment-value" class="sentiment-value">Neutral</div>
-        
-        <div class="slider-container">
-          <div class="slider-wrapper">
-            <div class="slider-track">
-              <div id="slider-fill" class="slider-fill"></div>
-              <div id="slider-handle" class="slider-handle"></div>
-            </div>
-          </div>
-          
-          <div class="slider-labels">
-            <span>Negative</span>
-            <span>Positive</span>
-          </div>
-          
-          <div class="instruction-text">Slide to indicate your sentiment</div>
-        </div>
-        
-        <button id="next-button" class="next-button">Next question</button>
-      </div>
-    </div>
-    
-    <!-- Demo Controls -->
-    <div class="demo-controls">
-      <h3>Demo Controls</h3>
-      <button id="reset-demo" class="reset-button">Reset Demo</button>
-    </div>
-    
-    <!-- Key Features -->
-    <div class="features-container">
-      <h3>Key Features</h3>
-      <ul class="feature-list">
-        <li>
-          <span class="feature-icon">🎨</span>
-          <span class="feature-text">Dynamic background colors reflect sentiment intensity</span>
-        </li>
-        <li>
-          <span class="feature-icon">💫</span>
-          <span class="feature-text">Ripple animation on slider release</span>
-        </li>
-        <li>
-          <span class="feature-icon">📱</span>
-          <span class="feature-text">Mobile-optimized touch interactions</span>
-        </li>
-        <li>
-          <span class="feature-icon">📝</span>
-          <span class="feature-text">Real-time feedback text updates</span>
-        </li>
-        <li>
-          <span class="feature-icon">⏭️</span>
-          <span class="feature-text">"Next question" button appears after interaction</span>
-        </li>
-      </ul>
-    </div>
-  </main>
-  
-  <footer>
-    <p>Created by <a href="https://github.com/Billsobey" target="_blank">Bill Sobey</a> | <a href="https://github.com/Billsobey/sentiment-slider" target="_blank">View on GitHub</a></p>
-  </footer>
-  
-  <script src="demo.js"></script>
+  <div id="root"></div>
 </body>
 </html>
