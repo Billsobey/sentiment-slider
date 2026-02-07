@@ -187,11 +187,13 @@ export function SentimentSliderSpectacular({
             />
             
             {showRipple && (
-              <div 
-                className="ripple ripple-primary" 
-                style={{ left: `${ripplePosition}%` }}
-              ></div>
-              <div className="ripple ripple-secondary" style={{ left: `${ripplePosition}%` }}></div>
+              <>
+                <div 
+                  className="ripple ripple-primary" 
+                  style={{ left: `${ripplePosition}%` }}
+                ></div>
+                <div className="ripple ripple-secondary" style={{ left: `${ripplePosition}%` }}></div>
+              </>
             )}
           </div>
           
