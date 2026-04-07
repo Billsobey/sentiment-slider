@@ -19,7 +19,11 @@ function App() {
   ];
 
   const handleConfirm = (value: number) => {
-    setFeedbackHistory(prev => [...prev, { value, timestamp: new Date() }]);
+    const MAX_HISTORY_SIZE = 20;
+    setFeedbackHistory(prev => {
+      const newHistory = [...prev, { value, timestamp: new Date() }];
+      return newHistory.slice(-MAX_HISTORY_SIZE);
+    });
     setShowSuccessMessage(true);
     
     setTimeout(() => {
