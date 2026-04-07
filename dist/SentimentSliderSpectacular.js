@@ -60,20 +60,21 @@ export function SentimentSliderSpectacular(_a) {
                 e.preventDefault();
             }
         };
-        document.addEventListener('touchmove', preventTouchScroll, { passive: false });
-        document.addEventListener('wheel', preventWheelScroll, { passive: false });
-        document.addEventListener('touchstart', preventElasticScroll, { passive: false });
-        // Use no-scroll class to prevent scrolling
         if (isSliding) {
+            document.addEventListener('touchmove', preventTouchScroll, { passive: false });
+            document.addEventListener('wheel', preventWheelScroll, { passive: false });
+            document.addEventListener('touchstart', preventElasticScroll, { passive: false });
             document.body.classList.add('no-scroll');
         }
         else {
             document.body.classList.remove('no-scroll');
         }
         return function () {
-            document.removeEventListener('touchmove', preventTouchScroll);
-            document.removeEventListener('wheel', preventWheelScroll);
-            document.removeEventListener('touchstart', preventElasticScroll);
+            if (isSliding) {
+                document.removeEventListener('touchmove', preventTouchScroll);
+                document.removeEventListener('wheel', preventWheelScroll);
+                document.removeEventListener('touchstart', preventElasticScroll);
+            }
             document.body.classList.remove('no-scroll');
         };
     }, [isSliding]);
