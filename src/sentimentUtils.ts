@@ -4,12 +4,14 @@
  * @returns Sentiment text label
  */
 export const getSentimentText = (value: number): string => {
-  if (value < 20) return "Negative";
-  if (value < 40) return "Somewhat Negative";
-  if (value < 48) return "Slightly Negative";
-  if (value > 80) return "Positive";
-  if (value > 60) return "Somewhat Positive";
-  if (value > 52) return "Slightly Positive";
+  const clampedValue = Math.max(0, Math.min(100, value));
+
+  if (clampedValue < 20) return "Negative";
+  if (clampedValue < 40) return "Somewhat Negative";
+  if (clampedValue < 48) return "Slightly Negative";
+  if (clampedValue > 80) return "Positive";
+  if (clampedValue > 60) return "Somewhat Positive";
+  if (clampedValue > 52) return "Slightly Positive";
   return "Neutral";
 };
 
