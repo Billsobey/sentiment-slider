@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './SentimentSliderSpectacular.css';
 
 /**
@@ -52,8 +52,6 @@ export function SentimentSliderSpectacular({
   const [showRipple, setShowRipple] = useState(false);
   const [ripplePosition, setRipplePosition] = useState(50);
   const [showConfirmButton, setShowConfirmButton] = useState(false);
-  const sliderRef = useRef<HTMLInputElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
 
   // Update slider value if initialValue prop changes
   useEffect(() => {
@@ -163,7 +161,6 @@ export function SentimentSliderSpectacular({
     <div 
       className={`sentiment-slider-container ${className}`} 
       style={{ background }}
-      ref={containerRef}
     >
       <div className="sentiment-content">
         <h2 className="sentiment-question">{questionText}</h2>
@@ -173,7 +170,6 @@ export function SentimentSliderSpectacular({
           
           <div className="slider-wrapper">
             <input
-              ref={sliderRef}
               type="range"
               min="0"
               max="100"

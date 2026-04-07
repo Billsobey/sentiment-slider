@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './SentimentSliderSpectacular.css';
 /**
  * SentimentSlider Component
@@ -13,8 +13,6 @@ export function SentimentSliderSpectacular(_a) {
     var _h = useState(false), showRipple = _h[0], setShowRipple = _h[1];
     var _j = useState(50), ripplePosition = _j[0], setRipplePosition = _j[1];
     var _k = useState(false), showConfirmButton = _k[0], setShowConfirmButton = _k[1];
-    var sliderRef = useRef(null);
-    var containerRef = useRef(null);
     // Update slider value if initialValue prop changes
     useEffect(function () {
         setSliderValue(initialValue);
@@ -110,13 +108,13 @@ export function SentimentSliderSpectacular(_a) {
     };
     var background = getBackground(sliderValue);
     var sentimentText = getSentimentText(sliderValue);
-    return (React.createElement("div", { className: "sentiment-slider-container ".concat(className), style: { background: background }, ref: containerRef },
+    return (React.createElement("div", { className: "sentiment-slider-container ".concat(className), style: { background: background } },
         React.createElement("div", { className: "sentiment-content" },
             React.createElement("h2", { className: "sentiment-question" }, questionText),
             React.createElement("div", { className: "slider-container" },
                 React.createElement("div", { className: "sentiment-text" }, sentimentText),
                 React.createElement("div", { className: "slider-wrapper" },
-                    React.createElement("input", { ref: sliderRef, type: "range", min: "0", max: "100", value: sliderValue, onChange: handleSliderChange, onMouseDown: handleSlideStart, onTouchStart: handleSlideStart, onMouseUp: handleSlideEnd, onTouchEnd: handleSlideEnd, className: "sentiment-slider" }),
+                    React.createElement("input", { type: "range", min: "0", max: "100", value: sliderValue, onChange: handleSliderChange, onMouseDown: handleSlideStart, onTouchStart: handleSlideStart, onMouseUp: handleSlideEnd, onTouchEnd: handleSlideEnd, className: "sentiment-slider" }),
                     showRipple && (React.createElement(React.Fragment, null,
                         React.createElement("div", { className: "ripple ripple-primary", style: { left: "".concat(ripplePosition, "%") } }),
                         React.createElement("div", { className: "ripple ripple-secondary", style: { left: "".concat(ripplePosition, "%") } })))),
