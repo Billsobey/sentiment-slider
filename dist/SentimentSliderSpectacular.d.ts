@@ -1,32 +1,11 @@
 import React from 'react';
 import './SentimentSliderSpectacular.css';
+import { SentimentSliderProps } from './SentimentSlider';
 /**
- * SentimentSlider Props Interface
+ * SentimentSlider Spectacular Props Interface
+ * Reuses props from the base SentimentSlider
  */
-export interface SentimentSliderSpectacularProps {
-    /**
-     * Initial value for the slider (0-100)
-     * Default: 50 (neutral position)
-     */
-    initialValue?: number;
-    /**
-     * Callback function triggered when user confirms their selection
-     */
-    onConfirm: (value: number) => void;
-    /**
-     * Optional custom question text
-     * Default: "How do you feel?"
-     */
-    questionText?: string;
-    /**
-     * Optional custom next button text
-     * Default: "Next question"
-     */
-    nextButtonText?: string;
-    /**
-     * Optional class name for additional styling
-     */
-    className?: string;
+export interface SentimentSliderSpectacularProps extends SentimentSliderProps {
 }
 /**
  * SentimentSlider Component
