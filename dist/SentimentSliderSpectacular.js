@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './SentimentSliderSpectacular.css';
+import { getSentimentText, getSpectacularBackground } from './sentimentUtils';
 /**
  * SentimentSlider Component
  *
@@ -19,28 +20,6 @@ export function SentimentSliderSpectacular(_a) {
     useEffect(function () {
         setSliderValue(initialValue);
     }, [initialValue]);
-    // Get feedback text based on slider value
-    var getSentimentText = function (value) {
-        if (value < 20)
-            return "Negative";
-        if (value < 40)
-            return "Somewhat Negative";
-        if (value < 48)
-            return "Slightly Negative";
-        if (value > 80)
-            return "Positive";
-        if (value > 60)
-            return "Somewhat Positive";
-        if (value > 52)
-            return "Slightly Positive";
-        return "Neutral";
-    };
-    // Get background color based on slider value
-    var getBackground = function (value) {
-        var hue = (value / 100) * 120;
-        var nextHue = Math.min(120, hue + 20);
-        return "linear-gradient(90deg, hsl(".concat(hue, ",85%,50%), hsl(").concat(nextHue, ",85%,50%))");
-    };
     // Prevent scrolling while using slider
     useEffect(function () {
         var preventTouchScroll = function (e) {
@@ -108,7 +87,7 @@ export function SentimentSliderSpectacular(_a) {
             onConfirm(sliderValue);
         }
     };
-    var background = getBackground(sliderValue);
+    var background = getSpectacularBackground(sliderValue);
     var sentimentText = getSentimentText(sliderValue);
     return (React.createElement("div", { className: "sentiment-slider-container ".concat(className), style: { background: background }, ref: containerRef },
         React.createElement("div", { className: "sentiment-content" },

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './SentimentSliderSpectacular.css';
+import { getSentimentText, getSpectacularBackground } from './sentimentUtils';
 
 /**
  * SentimentSlider Props Interface
@@ -60,23 +61,6 @@ export function SentimentSliderSpectacular({
     setSliderValue(initialValue);
   }, [initialValue]);
 
-  // Get feedback text based on slider value
-  const getSentimentText = (value: number): string => {
-    if (value < 20) return "Negative";
-    if (value < 40) return "Somewhat Negative";
-    if (value < 48) return "Slightly Negative";
-    if (value > 80) return "Positive";
-    if (value > 60) return "Somewhat Positive";
-    if (value > 52) return "Slightly Positive";
-    return "Neutral";
-  };
-
-  // Get background color based on slider value
-  const getBackground = (value: number): string => {
-    const hue = (value / 100) * 120;
-    const nextHue = Math.min(120, hue + 20);
-    return `linear-gradient(90deg, hsl(${hue},85%,50%), hsl(${nextHue},85%,50%))`;
-  };
 
   // Prevent scrolling while using slider
   useEffect(() => {
@@ -156,7 +140,7 @@ export function SentimentSliderSpectacular({
     }
   };
 
-  const background = getBackground(sliderValue);
+  const background = getSpectacularBackground(sliderValue);
   const sentimentText = getSentimentText(sliderValue);
 
   return (
