@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import './SentimentSliderSpectacular.css';
+import { getSentimentText, getSpectacularBackground } from './sentimentUtils';
 
 /**
  * SentimentSlider Props Interface
@@ -49,6 +50,7 @@ export function SentimentSliderSpectacular({
 }: SentimentSliderSpectacularProps) {
   const [sliderValue, setSliderValue] = useState(initialValue);
   const [isSliding, setIsSliding] = useState(false);
+  const isSlidingRef = useRef(false);
   const [showRipple, setShowRipple] = useState(false);
   const [ripplePosition, setRipplePosition] = useState(50);
   const [showConfirmButton, setShowConfirmButton] = useState(false);
@@ -60,50 +62,40 @@ export function SentimentSliderSpectacular({
     setSliderValue(initialValue);
   }, [initialValue]);
 
-  // Get feedback text based on slider value
-  const getSentimentText = (value: number): string => {
-    if (value < 20) return "Negative";
-    if (value < 40) return "Somewhat Negative";
-    if (value < 48) return "Slightly Negative";
-    if (value > 80) return "Positive";
-    if (value > 60) return "Somewhat Positive";
-    if (value > 52) return "Slightly Positive";
-    return "Neutral";
-  };
+  const preventTouchScroll = useCallback((e: TouchEvent) => {
+    if (isSlidingRef.current) {
+      e.preventDefault();
+    }
+  }, []);
 
-  // Get background color based on slider value
-  const getBackground = (value: number): string => {
-    const hue = (value / 100) * 120;
-    const nextHue = Math.min(120, hue + 20);
-    return `linear-gradient(90deg, hsl(${hue},85%,50%), hsl(${nextHue},85%,50%))`;
-  };
+  const preventWheelScroll = useCallback((e: WheelEvent) => {
+    if (isSlidingRef.current) {
+      e.preventDefault();
+    }
+  }, []);
+
+  const preventElasticScroll = useCallback((e: TouchEvent) => {
+    if (isSlidingRef.current && e.touches[0] &&
+        (e.touches[0].clientY < 10 ||
+         e.touches[0].clientY > window.innerHeight - 10)) {
+      e.preventDefault();
+    }
+  }, []);
 
   // Prevent scrolling while using slider
   useEffect(() => {
-    const preventTouchScroll = (e: TouchEvent) => {
-      if (isSliding) {
-        e.preventDefault();
-      }
-    };
-
-    const preventWheelScroll = (e: WheelEvent) => {
-      if (isSliding) {
-        e.preventDefault();
-      }
-    };
-
-    const preventElasticScroll = (e: TouchEvent) => {
-      if (isSliding && e.touches[0] && 
-          (e.touches[0].clientY < 10 || 
-           e.touches[0].clientY > window.innerHeight - 10)) {
-        e.preventDefault();
-      }
-    };
-
     document.addEventListener('touchmove', preventTouchScroll, { passive: false });
     document.addEventListener('wheel', preventWheelScroll, { passive: false });
     document.addEventListener('touchstart', preventElasticScroll, { passive: false });
 
+    return () => {
+      document.removeEventListener('touchmove', preventTouchScroll);
+      document.removeEventListener('wheel', preventWheelScroll);
+      document.removeEventListener('touchstart', preventElasticScroll);
+    };
+  }, [preventTouchScroll, preventWheelScroll, preventElasticScroll]);
+
+  useEffect(() => {
     // Use no-scroll class to prevent scrolling
     if (isSliding) {
       document.body.classList.add('no-scroll');
@@ -112,9 +104,6 @@ export function SentimentSliderSpectacular({
     }
 
     return () => {
-      document.removeEventListener('touchmove', preventTouchScroll);
-      document.removeEventListener('wheel', preventWheelScroll);
-      document.removeEventListener('touchstart', preventElasticScroll);
       document.body.classList.remove('no-scroll');
     };
   }, [isSliding]);
@@ -128,6 +117,7 @@ export function SentimentSliderSpectacular({
   // Handle slide start
   const handleSlideStart = () => {
     setIsSliding(true);
+    isSlidingRef.current = true;
     setShowRipple(false);
     setShowConfirmButton(false);
   };
@@ -135,6 +125,7 @@ export function SentimentSliderSpectacular({
   // Handle slide end
   const handleSlideEnd = () => {
     setIsSliding(false);
+    isSlidingRef.current = false;
     setRipplePosition(sliderValue);
     setShowRipple(true);
     
@@ -156,7 +147,7 @@ export function SentimentSliderSpectacular({
     }
   };
 
-  const background = getBackground(sliderValue);
+  const background = getSpectacularBackground(sliderValue);
   const sentimentText = getSentimentText(sliderValue);
 
   return (

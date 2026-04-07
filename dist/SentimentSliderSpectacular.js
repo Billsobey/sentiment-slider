@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import './SentimentSliderSpectacular.css';
+import { getSentimentText, getSpectacularBackground } from './sentimentUtils';
 /**
  * SentimentSlider Component
  *
@@ -10,6 +11,7 @@ export function SentimentSliderSpectacular(_a) {
     var _b = _a.initialValue, initialValue = _b === void 0 ? 50 : _b, onConfirm = _a.onConfirm, _c = _a.questionText, questionText = _c === void 0 ? "How do you feel?" : _c, _d = _a.nextButtonText, nextButtonText = _d === void 0 ? "Next question" : _d, _e = _a.className, className = _e === void 0 ? "" : _e;
     var _f = useState(initialValue), sliderValue = _f[0], setSliderValue = _f[1];
     var _g = useState(false), isSliding = _g[0], setIsSliding = _g[1];
+    var isSlidingRef = useRef(false);
     var _h = useState(false), showRipple = _h[0], setShowRipple = _h[1];
     var _j = useState(50), ripplePosition = _j[0], setRipplePosition = _j[1];
     var _k = useState(false), showConfirmButton = _k[0], setShowConfirmButton = _k[1];
@@ -19,50 +21,35 @@ export function SentimentSliderSpectacular(_a) {
     useEffect(function () {
         setSliderValue(initialValue);
     }, [initialValue]);
-    // Get feedback text based on slider value
-    var getSentimentText = function (value) {
-        if (value < 20)
-            return "Negative";
-        if (value < 40)
-            return "Somewhat Negative";
-        if (value < 48)
-            return "Slightly Negative";
-        if (value > 80)
-            return "Positive";
-        if (value > 60)
-            return "Somewhat Positive";
-        if (value > 52)
-            return "Slightly Positive";
-        return "Neutral";
-    };
-    // Get background color based on slider value
-    var getBackground = function (value) {
-        var hue = (value / 100) * 120;
-        var nextHue = Math.min(120, hue + 20);
-        return "linear-gradient(90deg, hsl(".concat(hue, ",85%,50%), hsl(").concat(nextHue, ",85%,50%))");
-    };
+    var preventTouchScroll = useCallback(function (e) {
+        if (isSlidingRef.current) {
+            e.preventDefault();
+        }
+    }, []);
+    var preventWheelScroll = useCallback(function (e) {
+        if (isSlidingRef.current) {
+            e.preventDefault();
+        }
+    }, []);
+    var preventElasticScroll = useCallback(function (e) {
+        if (isSlidingRef.current && e.touches[0] &&
+            (e.touches[0].clientY < 10 ||
+                e.touches[0].clientY > window.innerHeight - 10)) {
+            e.preventDefault();
+        }
+    }, []);
     // Prevent scrolling while using slider
     useEffect(function () {
-        var preventTouchScroll = function (e) {
-            if (isSliding) {
-                e.preventDefault();
-            }
-        };
-        var preventWheelScroll = function (e) {
-            if (isSliding) {
-                e.preventDefault();
-            }
-        };
-        var preventElasticScroll = function (e) {
-            if (isSliding && e.touches[0] &&
-                (e.touches[0].clientY < 10 ||
-                    e.touches[0].clientY > window.innerHeight - 10)) {
-                e.preventDefault();
-            }
-        };
         document.addEventListener('touchmove', preventTouchScroll, { passive: false });
         document.addEventListener('wheel', preventWheelScroll, { passive: false });
         document.addEventListener('touchstart', preventElasticScroll, { passive: false });
+        return function () {
+            document.removeEventListener('touchmove', preventTouchScroll);
+            document.removeEventListener('wheel', preventWheelScroll);
+            document.removeEventListener('touchstart', preventElasticScroll);
+        };
+    }, [preventTouchScroll, preventWheelScroll, preventElasticScroll]);
+    useEffect(function () {
         // Use no-scroll class to prevent scrolling
         if (isSliding) {
             document.body.classList.add('no-scroll');
@@ -71,9 +58,6 @@ export function SentimentSliderSpectacular(_a) {
             document.body.classList.remove('no-scroll');
         }
         return function () {
-            document.removeEventListener('touchmove', preventTouchScroll);
-            document.removeEventListener('wheel', preventWheelScroll);
-            document.removeEventListener('touchstart', preventElasticScroll);
             document.body.classList.remove('no-scroll');
         };
     }, [isSliding]);
@@ -85,12 +69,14 @@ export function SentimentSliderSpectacular(_a) {
     // Handle slide start
     var handleSlideStart = function () {
         setIsSliding(true);
+        isSlidingRef.current = true;
         setShowRipple(false);
         setShowConfirmButton(false);
     };
     // Handle slide end
     var handleSlideEnd = function () {
         setIsSliding(false);
+        isSlidingRef.current = false;
         setRipplePosition(sliderValue);
         setShowRipple(true);
         // Show confirmation button after interaction
@@ -108,7 +94,7 @@ export function SentimentSliderSpectacular(_a) {
             onConfirm(sliderValue);
         }
     };
-    var background = getBackground(sliderValue);
+    var background = getSpectacularBackground(sliderValue);
     var sentimentText = getSentimentText(sliderValue);
     return (React.createElement("div", { className: "sentiment-slider-container ".concat(className), style: { background: background }, ref: containerRef },
         React.createElement("div", { className: "sentiment-content" },
