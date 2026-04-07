@@ -19,7 +19,8 @@ export const getSentimentText = (value: number): string => {
  * @returns CSS linear-gradient string
  */
 export const getSpectacularBackground = (value: number): string => {
-  const hue = (value / 100) * 120;
+  const clampedValue = Math.max(0, Math.min(100, value));
+  const hue = (clampedValue / 100) * 120;
   const nextHue = Math.min(120, hue + 20);
   return `linear-gradient(90deg, hsl(${hue},85%,50%), hsl(${nextHue},85%,50%))`;
 };
